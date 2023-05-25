@@ -1,20 +1,21 @@
 #include "main.h"
 
 /**
-*
-*
-*
+* getalist- Static wrapper getalist lists
+* Return: Address of the list
 */
 AliasData **getalist()
 {
-	static AliasData * alist;
+	static AliasData *alist;
+
 	return (&alist);
 }
 
 /**
-*
-*
-*
+* getalias - gets value of alias
+* @n: alias name
+* Return: original arg
+*	else value
 */
 char *getalias(char *n)
 {
@@ -26,7 +27,7 @@ char *getalias(char *n)
 #ifdef DEBUGMODE
 		printf("Checked %s against %s\n", n, ptr->n);
 #endif
-		ptr = ptr ->next;
+		ptr = ptr->next;
 	}
 	if (ptr == NULL)
 	{
@@ -43,9 +44,10 @@ char *getalias(char *n)
 }
 
 /**
-*
-*
-*
+* setalias - setting alias and the value
+* @n: alias name
+* @val: alias value
+* Return: 0 success
 */
 int setalias(char *n, char *val)
 {
@@ -56,7 +58,7 @@ int setalias(char *n, char *val)
 	if (alist == NULL)
 	{
 		new = malloc(sizeof(AliasData));
-		if(new == NULL)
+		if (new == NULL)
 			return (-1);
 		new->n = n;
 		new->val = val;
@@ -86,15 +88,16 @@ int setalias(char *n, char *val)
 }
 
 /**
-*
-*
-*
+* unsetalias- unsetting alias and the value
+* @n: alias name
+* Return: 0 success
 */
 int unsetalias(char *n)
 {
 	AliasData *alist = *(getalist());
 	AliasData *p = alist;
 	AliasData *next;
+
 	if (alist == NULL)
 		return (0);
 	if (!(_strcmp(p->n, n)))
@@ -117,9 +120,9 @@ int unsetalias(char *n)
 }
 
 /**
-*
-*
-*
+* aliascmd - tokenizes alias command arguments
+* @av: arguments
+* Return: 1
 */
 int aliascmd(char *av[])
 {
