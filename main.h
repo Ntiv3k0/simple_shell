@@ -77,7 +77,7 @@ size_t _strlen(char *str);
 char *_strcpy(char *dest, char *src);
 char *_strdup(char *str);
 char *_strcat(char *dest, char *src);
-int linecount(int increment);
+int linecounter(int increment);
 char *itos(int digits);
 int printerr(char *str);
 int fprintstrs(int fd, char *str, ...);

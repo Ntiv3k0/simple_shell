@@ -53,7 +53,7 @@ int _putchar(char s)
 * printenv- to print environment
 * Return: 0 on success
 */
-int printenv(void)
+int _printenv(void)
 {
 	/* getenviron() - static wrapper copy of whole environ */
 	char ** environ = *(getenviron());

@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * checkpath - check path
+ * checkpath - checking of the path
  *
  * @av: arg
  *
@@ -58,7 +58,7 @@ int checkpath(char *av[])
 				pathvar++;
 		}
 	}
-	linect = itos(linecount(0));
+	linect = itos(linecounter(0));
 	path = getsvar("0");
 	fprintstrs(2, path, ":", linect, ":", av[0], ": not found\n", NULL);
 	free(path);
@@ -111,7 +111,7 @@ int cmdcall(char *av[], char *cmd)
 			}
 			else
 			{
-				linect = itos(linecount(0));
+				linect = itos(linecounter(0));
 				dolz = getsvar("0");
 				fprintstrs(2, dolz, ": ", linect, ": ", cmd, "; not found\n", NULL);
 				free(dolz);

@@ -70,7 +70,7 @@ int printerr(char *str)
 	char *pathname, *numstr;
 
 	pathname = getsvar("0");
-	numstr = itos(linecount(0));
+	numstr = itos(linecounter(0));
 	if (str != NULL)
 	{
 		fprintstrs(2, pathname, ": ", numstr, str, NULL);

@@ -364,7 +364,7 @@ char *tildeexpand(char *buf)
  * @buf: Buffer pointer
  * Return: Return the value of the command
 */
-int perseargs(char **buf)
+int parseargs(char **buf)
 {
 	char *av[1024], *ptr, *right, *left;
 	int ac, newc, ret = 0;

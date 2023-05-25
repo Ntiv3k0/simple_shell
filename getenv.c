@@ -38,7 +38,7 @@ char **getallenv()
  * @newval: New values to be added
  * Return: if fail is -1, is success is 0
 */
-int satallenv(char **envin, char *newval)
+int setallenv(char **envin, char *newval)
 {
 	char ***environ = getenviron();
 	size_t len = 0;

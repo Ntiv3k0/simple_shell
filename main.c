@@ -14,7 +14,7 @@ int inputvalidator(char **buf, int fd)
 	ssize_t lenr;
 	size_t linebuf;
 	int start = 1, complete = 0;
-	linecount(1);
+	linecounter(1);
 	if (*bufptr == 0)
 		return (0);
 	while (*bufptr)
