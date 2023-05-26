@@ -19,7 +19,7 @@ int initsvars(int ac, char **av)
 		return (-1);
 	special = *specialroot;
 #ifdef DEBUGMODE
-	printf("special:%p:*getspecial():%p:\n", *(getspecial()));
+	printf("special:%p:*getspecial():%p:\n", *(getspecial()), *(getspecial()));
 #endif
 	special->val = _strdup("0");
 	special->n = _strdup("?");
@@ -32,15 +32,6 @@ int initsvars(int ac, char **av)
 #endif
 		nums[0] = i + '0';
 		ptr->val = _strdup(av[i]);
-		ptr->n = _strdup(nums);
-		ptr->next = ptr + 1;
-		ptr = ptr->next;
-		i++;
-	}
-	while (i < 10)
-	{
-		nums[0] = i + '0';
-		ptr->val = _strdup("0");
 		ptr->n = _strdup(nums);
 		ptr->next = ptr + 1;
 		ptr = ptr->next;
@@ -133,7 +124,7 @@ int setsvar(char *n, char *val)
 	{
 #ifdef DEBUGMODE
 		printf("Setting special %s to %s\n", ptr->n, val);
-		printf("ptr -> val %p\n, ptr->val");
+		printf("ptr -> val %p\n", ptr->val);
 #endif
 		free(ptr->val);
 		ptr->val = _strdup(val);
@@ -146,9 +137,9 @@ int setsvar(char *n, char *val)
 	if (ptr == NULL)
 	{
 #ifdef DEBUGMODE
-		print("Setting new $s to %s\n", n, val);
+		printf("Setting new $s to %s\n", n, val);
 #endif
-		new = malloc(sizeof(ShellVar));
+		new = malloc(sizeof(new));
 		if (new == NULL)
 			return (-1);
 		new->n = _strdup(n);
@@ -193,7 +184,7 @@ int unsetsvar(char *n)
 	ShellVar *ptr = vars;
 	ShellVar *next;
 #ifdef DEBUGMODE
-	printf("In unsetsvar:vars:%p:name:%s\n", vars, n)
+	printf("In unsetsvar:vars:%p:name:%s\n", vars, n);
 #endif
 	if (vars == NULL)
 		return (0);

@@ -80,7 +80,7 @@ int checkpath(char *av[])
 int cmdcall(char *av[], char *cmd)
 {
 	pid_t command;
-	int status;
+	int status = 0;
 	char *linect, *dolz;
 
 #ifdef DEBUGMODE
@@ -95,7 +95,7 @@ int cmdcall(char *av[], char *cmd)
 	command = fork();
 #ifdef DEBUGMODE
 	printf("command: %d\n", command);
-	ffluch(stdout);
+	fflush(stdout);
 #endif
 	if (command == 0)
 	{
@@ -126,6 +126,7 @@ int cmdcall(char *av[], char *cmd)
 	}
 	else
 	{
+		status = 0;
 		wait(&status);
 	}
 #ifdef DEBUGMODE

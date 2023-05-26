@@ -43,7 +43,8 @@ int setallenv(char **envin, char *newval)
 	char ***environ = getenviron();
 	size_t len = 0;
 #ifdef DEBUGMODE
-	printf("In satallenv, neval: %s\n", newval);
+	if (newval != NULL)
+		printf("In satallenv, neval: %s\n", newval);
 #endif
 	while (envin[len] != NULL)
 		len++;
@@ -201,7 +202,7 @@ int _unsetenv(char *n)
 	}
 	environ[i] = NULL;
 	env = environ;
-	setallenv(env, NULL);
+	setallenv(env, "");
 	i = 0;
 	while (env[i])
 	{

@@ -28,9 +28,14 @@ char *_getpid()
 	char *file = "/proc/self/status";
 	int fd;
 	s = malloc(256);
+	if (s == NULL)
+		return (NULL);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return (0);
+	{
+		free(s);
+		return (NULL);
+	}
 	while (_getline(&s, fd))
 	{
 		n = _strtok(s, ":");
@@ -38,10 +43,11 @@ char *_getpid()
 		{
 			pid = _strdup(_strtok(NULL, "\n \t"));
 			free(s);
+			close(fd);
 			return (pid);
 		}
-		free(s);
-		s = NULL;
 	}
+	free(s);
+	close(fd);
 	return (NULL);
 }
