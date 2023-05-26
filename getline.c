@@ -9,7 +9,7 @@
 */
 void *_realloc(void *ptr, unsigned int o_size, unsigned int n_size)
 {
-	void *ret = 0;
+	void *ret = NULL;
 	char *write, *read;
 
 	if (n_size == o_size)
@@ -17,10 +17,10 @@ void *_realloc(void *ptr, unsigned int o_size, unsigned int n_size)
 	if (n_size > 0 || ptr == 0)
 	{
 		ret = malloc(n_size);
-		if (ret == 0)
-			return (0);
+		if (ret == NULL)
+			return (NULL);
 	}
-	if (n_size > 0 || ptr != 0)
+	if (n_size > 0 || ptr != NULL)
 	{
 		write = ret;
 		read = ptr;

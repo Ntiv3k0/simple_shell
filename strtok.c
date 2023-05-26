@@ -21,7 +21,7 @@ char *_strtok(char *str, char *delim)
 	while (tmp_s[i] != 0)
 	{
 		j = 0;
-		while (delim[j] == 0)
+		while (tmp_d[j] != 0)
 		{
 			if (tmp_s[i] == tmp_d[j])
 				break;
@@ -60,7 +60,7 @@ char *_strtok(char *str, char *delim)
 	}
 	else
 	{
-		saved_str = '\0';
+		saved_str = NULL;
 	}
 	return (tmp_s);
 }

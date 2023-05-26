@@ -45,11 +45,11 @@ char *_getpid()
 		n = _strtok(s, ":");
 		if (!_strcmp(n, "Pid"))
 		{
-			pid = _strdup(_strtok(NULL, "\n \t"));
+			pid = _strtok(NULL, "\n \t");
 			break;
 		}
 	}
-	free(s);
 	close(fd);
+	free(s);
 	return (pid);
 }

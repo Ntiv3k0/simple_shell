@@ -18,7 +18,7 @@ char **getallenv()
 	while (envcopy[len] != NULL)
 		len++;
 #ifdef DEBUGMODE
-	printf("Got length of env lines %ld\n , coping now\n", len);
+	printf("Got length of env lines %zu\n , coping now\n", len);
 #endif
 	envcopy = malloc(sizeof(char **) * (len + 1));
 	if (envcopy == NULL)

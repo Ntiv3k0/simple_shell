@@ -29,6 +29,8 @@ char *val;
 struct AliasData *next;
 } AliasData;
 
+extern char **environ;
+
 int _atoi(char *s);
 char **getallenv();
 int setallenv(char **envin, char *newval);
