@@ -24,10 +24,14 @@ ShellVar **getvars()
 
 char *_getpid()
 {
-	char *s, *pid, *n;
+	char *s = NULL;
+	char *pid = NULL;
+	char *n;
 	char *file = "/proc/self/status";
 	int fd;
-	s = malloc(256);
+	size_t bufsize = 1024;
+
+	s = malloc(bufsize);
 	if (s == NULL)
 		return (NULL);
 	fd = open(file, O_RDONLY);
@@ -42,12 +46,10 @@ char *_getpid()
 		if (!_strcmp(n, "Pid"))
 		{
 			pid = _strdup(_strtok(NULL, "\n \t"));
-			free(s);
-			close(fd);
-			return (pid);
+			break;
 		}
 	}
 	free(s);
 	close(fd);
-	return (NULL);
+	return (pid);
 }

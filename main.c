@@ -219,7 +219,6 @@ int shintmode(void)
 			if (pwd != NULL)
 			{
 				fprintstrs(1, "Homemade shell: ", pwd, "$ ", NULL);
-				free(pwd);
 			}
 			else
 			{
