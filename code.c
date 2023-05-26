@@ -31,7 +31,7 @@ int _cd(char *av[])
 		free(av[1]);
 		av[1] = newpath;
 	}
-#ifdef DUBUGCD
+#ifdef DEBUGCD
 	printf("Making new path %s: %c\n", av[1], av[1][0]);
 #endif
 	newpath = malloc(sizeof(char) * (_strlen(oldpwd) + _strlen(av[1] + 2)));
@@ -44,7 +44,7 @@ int _cd(char *av[])
 			*newptr++ = *pathbit++;
 	*newptr++ = '/';
 	pathbit = _strtok(av[1], "/");
-#ifdef DUBUGCD
+#ifdef DEBUGCD
 	printf("Starting newpath: %s Pathbit got: %s \n", newpath, pathbit);
 	printf("newpath/ptr diff: %p \n", newptr - newpath);
 #endif
@@ -52,7 +52,7 @@ int _cd(char *av[])
 	{
 		if (pathbit[0] == '.' && pathbit[1] == '.' && pathbit[2] == 0)
 		{
-#ifdef DUBUGCD
+#ifdef DEBUGCD
 			printf("going back a directory %s: %s\n", newpath, newpath);
 #endif
 			newptr--;
@@ -69,14 +69,14 @@ int _cd(char *av[])
 			*newptr++ = '/';
 		}
 		pathbit = _strtok(NULL, "/");
-#ifdef DUBUGCD
+#ifdef DEBUGCD
 		printf("Got pathbit: %s \n", pathbit);
 #endif
 	}
 	if (newptr != newpath && newptr != newpath + 1)
 		newptr--;
 	*newptr = 0;
-#ifdef DUBUGCD
+#ifdef DEBUGCD
 	printf("New path: %s\n", newpath);
 #endif
 	ret = chdir(newpath);

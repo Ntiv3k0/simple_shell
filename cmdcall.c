@@ -183,7 +183,7 @@ int  builtincall(char *av[])
 		retval = _cd(av);
 	else if (!_strcmp(av[0], "history"))
 		retval = print_hist();
-	else if (!strcmp(av[0], "help"))
+	else if (!_strcmp(av[0], "help"))
 		retval = help(av[1]);
 	else if (!_strcmp(av[0], "unalias"))
 		retval = unsetalias(av[1]);

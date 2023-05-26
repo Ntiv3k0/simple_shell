@@ -24,7 +24,7 @@ void exitcleanup(char **av)
 	i = 0;
 	if (av != NULL)
 		for (i = 0; av[i] != NULL; i++)
-		free(av[i]);
+			free(av[i]);
 	i = 0;
 	while (environ[i] != NULL)
 		free(environ[i++]);

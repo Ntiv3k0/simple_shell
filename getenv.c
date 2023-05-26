@@ -17,7 +17,7 @@ char **getallenv()
 	envcopy = environ;
 	while (envcopy[len] != NULL)
 		len++;
-#ifndef DEBUGMODE
+#ifdef DEBUGMODE
 	printf("Got length of env lines %ld\n , coping now\n", len);
 #endif
 	envcopy = malloc(sizeof(char **) * (len + 1));
@@ -42,7 +42,7 @@ int setallenv(char **envin, char *newval)
 {
 	char ***environ = getenviron();
 	size_t len = 0;
-#ifndef DEBUGMODE
+#ifdef DEBUGMODE
 	printf("In satallenv, neval: %s\n", newval);
 #endif
 	while (envin[len] != NULL)
@@ -53,28 +53,26 @@ int setallenv(char **envin, char *newval)
 	if (*environ == NULL)
 		return (-1);
 	for (len = 0; envin[len] != NULL; len++)
-	{
 		if (newval == NULL)
 		{
 			(*environ)[len] = _strdup(envin[len]);
 		}
 		else
 			(*environ)[len] = envin[len];
-		if (newval != NULL)
-		{
-#ifndef DEBUGMODE
-			printf("Adding newval: %s\n", newval);
+	if (newval != NULL)
+	{
+#ifdef DEBUGMODE
+		printf("Adding newval: %s\n", newval);
 #endif
-			(*environ)[len] = newval;
-			len++;
-		}
-		(*environ)[len] = NULL;
-#ifndef DEBUGMODE
-		printf("End. Free old environ if adding a string\n");
-#endif
-		if (newval != NULL)
-			free(envin);
+		(*environ)[len] = newval;
+		len++;
 	}
+	(*environ)[len] = NULL;
+#ifdef DEBUGMODE
+	printf("End. Free old environ if adding a string\n");
+#endif
+	if (newval != NULL)
+		free(envin);
 	return (0);
 }
 
@@ -85,7 +83,7 @@ char *_getenv(char *n)
 	int i, j;
 	char *s;
 
-#ifndef DEBUGMODE
+#ifdef DEBUGMODE
 	printf("In getenv: %s\n", n);
 #endif
 
@@ -94,7 +92,7 @@ char *_getenv(char *n)
 	{
 		s = environ[i];
 		j = 0;
-#ifndef DEBUGMODE
+#ifdef DEBUGMODE
 		printf("Checking against %s\n", environ[i]);
 #endif
 		while (s[j] == n[j])
@@ -121,7 +119,7 @@ int _setenv(char *n, char *val)
 	char **environ = *environrt;
 	int i, j, name, vall;
 	char *s, *r;
-#ifndef DEBUGMODE
+#ifdef DEBUGMODE
 	printf("In setenv: %s\nof value %s\n", n, val);
 #endif
 	if (n == NULL || val == NULL)
@@ -169,7 +167,7 @@ int _setenv(char *n, char *val)
 int _unsetenv(char *n)
 {
 	char **environ = *getenviron();
-	int i, j, check;
+	int i, j, check = 0;
 	char *s;
 	char **env;
 #ifdef DEBUGMODE

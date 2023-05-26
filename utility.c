@@ -31,7 +31,7 @@ char *itos(int digits)
 	{
 		output = malloc(sizeof(char) *2);
 		output[0] = '0';
-		output[1] = '0';
+		output[1] = 0;
 		return (output);
 	}
 	if (digits < 0)
@@ -101,7 +101,6 @@ int fprintstrs(int fd, char *str, ...)
 	va_start(list, str);
 	write(fd, str, _strlen(str));
 	str = va_arg(list, char *);
-	str = va_arg(list, char *);
 	while (str != NULL)
 	{
 		write(fd, str, _strlen(str));
@@ -119,7 +118,7 @@ int fprintstrs(int fd, char *str, ...)
 char *_strchr(char *s, char c)
 {
 	int i;
-	int len;
+	int len = 0;
 
 	i = 0;
 	while (s[i] != '\0')

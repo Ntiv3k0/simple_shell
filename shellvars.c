@@ -96,21 +96,6 @@ char *getsvar(char *n)
 #endif
 		ptr = ptr->next;
 	}
-	if (ptr != NULL)
-	{
-#ifdef DEBUGMODE
-		printf("Returning special var %s:%s\n", ptr->n, ptr->val);
-#endif
-		return (_strdup(ptr->val));
-	}
-	ptr = vars;
-	while (ptr != NULL && _strcmp(ptr->n, n))
-	{
-#ifdef DEBUGMODE
-		printf("Checked .%s. agaist .%s.\n", n, ptr->n);
-#endif
-		ptr = ptr->next;
-	}
 	if (ptr == NULL)
 	{
 #ifdef DEBUGMODE
@@ -222,6 +207,7 @@ int unsetsvar(char *n)
 #endif
 		*vars = *vars->next;
 		free(ptr->n);
+		free(ptr->val);
 		free(ptr);
 		return (0);
 	}
