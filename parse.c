@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * parsesetvar - Parse set shell variables, Return new Buffer
- * variable settings
- * @buf: Buffer
- * Return: String
+* parsesetsvar - Parse set shell variables, Return new Buffer
+* variable settings
+* @buf: Buffer
+* Return: String
 */
 char *parsesetsvar(char *buf)
 {
@@ -26,7 +26,7 @@ char *parsesetsvar(char *buf)
 				n = _strtok(n, "=");
 				val = _strtok(NULL, "");
 #ifdef DEBUGSVARS
-				printf("In parsesetsvar: setting var %s to 5s\n", n, val);
+				printf("In parsesetsvar: setting var %s to %s\n", n, val);
 #endif
 				setsvar(n, val);
 				if (buf == NULL)
@@ -54,16 +54,20 @@ char *parsesetsvar(char *buf)
 	} while (h && *p != 0);
 	newbuf = malloc(sizeof(char) * (_strlen(buf) + 1));
 	if (newbuf == NULL)
+	{
+		free(bufstart);
 		return (NULL);
+	
+	}
 	newbuf = _strcpy(newbuf, buf);
 	free(bufstart);
 	return (newbuf);
 }
 
 /**
- * subsvars - Substitute in svariables for $names
- * @buf: Buffer string that used to be input
- * Return: Processed Buffer String
+* subsvars - Substitute in svariables for $names
+* @buf: Buffer string that used to be input
+* Return: Processed Buffer String
 */
 char *subsvars(char **buf)
 {
@@ -169,9 +173,9 @@ char *subsvars(char **buf)
 }
 
 /**
- * cleanarg - clean escapes and Function quotes
- * @arg: arg to clean
- * Return: cleaned arguments
+* cleanarg - clean escapes and Function quotes
+* @arg: arg to clean
+* Return: cleaned arguments
 */
 char *cleanarg(char *arg)
 {
@@ -274,9 +278,9 @@ char *cleanarg(char *arg)
 }
 
 /**
- * tildeexpand - handlers expandings where applicable
- * @buf: Buffer to be processed
- * Return: buffer that is processed
+* tildeexpand - handlers expandings where applicable
+* @buf: Buffer to be processed
+* Return: buffer that is processed
 */
 char *tildeexpand(char *buf)
 {
@@ -352,7 +356,6 @@ char *tildeexpand(char *buf)
 #ifdef DEBUGMODE 
 		printf("tilde expanded %s\n", newbuf);
 #endif
-		free(homepath);
 		free(buf);
 		buf = newbuf;
 	}
@@ -360,9 +363,9 @@ char *tildeexpand(char *buf)
 }
 
 /**
- * parseargs - Parseargs functions, frees buffer at the ends
- * @buf: Buffer pointer
- * Return: Return the value of the command
+* parseargs - Parseargs functions, frees buffer at the ends
+* @buf: Buffer pointer
+* Return: Return the value of the command
 */
 int parseargs(char **buf)
 {
