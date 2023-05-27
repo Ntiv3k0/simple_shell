@@ -29,7 +29,7 @@ int _atoi(char *s)
 	while (check_num > 0)
 	{
 		sum = sum + ((s[i] - '0') * x);
-		x = x *10;
+		x = x * 10;
 		i--;
 		check_num--;
 	}
@@ -39,10 +39,10 @@ int _atoi(char *s)
 }
 
 /**
-* _putchar- writes the character c to STDOUT
-* @c: character to print
+* _putchar- writes the character c to the STDOUT
 * Return: on success 1
 *	-1 on error
+*	@s: character
 */
 int _putchar(char s)
 {
@@ -50,13 +50,13 @@ int _putchar(char s)
 }
 
 /**
-* printenv- to print environment
+* _printenv - to print environment
 * Return: 0 on success
 */
 int _printenv(void)
 {
 	/* getenviron() - static wrapper copy of whole environ */
-	char ** environ = *(getenviron());
+	char **environ = *(getenviron());
 	int i, j;
 
 	i = 0;
