@@ -23,7 +23,7 @@ char *parsesetsvar(char *buf)
 				buf = _strtok(NULL, "");
 				p = buf;
 				h = 1;
-				n = _strtok(n, "=");
+				val = _strtok(n, "=");
 				val = _strtok(NULL, "");
 #ifdef DEBUGSVARS
 				printf("In parsesetsvar: setting var %s to %s\n", n, val);
@@ -113,7 +113,7 @@ char *subsvars(char **buf)
 		if (*vrp == 0)
 			return (*buf);
 		vrp++;
-		for (p = vrp, vnlen =0; *p != 0 && *p != ' ' && *p != '\n' && *p != '\\'; p++)
+		for (p = vrp, vnlen = 0; *p != 0 && *p != ' ' && *p != '\n' && *p != '\\'; p++)
 			vnlen++;
 #ifdef DEBUGSVARS
 		printf("varnlen %d varptr %s\n", vnlen, vrp);
@@ -271,7 +271,7 @@ char *cleanarg(char *arg)
 	}
 	*pp = 0;
 #ifdef DEBUGMODE
-	printf("Clean arg return buf %s\n", newbuf);
+	printf("Clean arg return buf %s\n", newptr);
 #endif
 	free(arg);
 	return (newbuf);
@@ -478,7 +478,7 @@ int parseargs(char **buf)
 #ifdef DUBUGMODE 
 	printf("Expanding tildes %s\n", *buf);
 #endif
-	*buf = tildeexpand (*buf);
+	*buf = tildeexpand(*buf);
 	if (*buf == NULL)
 		return (-1);
 #ifdef DEBUGMODE 
