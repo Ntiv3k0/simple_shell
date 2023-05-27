@@ -25,7 +25,7 @@ int inputvalidator(char **buf, int fd)
 		while ((*bufptr == ' ' || *bufptr == '\n') && !(complete & 3))
 bufptr++;
 		if (*bufptr == 0)
-		break;
+			break;
 		if (start)
 		{
 			if (*bufptr == ';' && *(bufptr + 1) == ';')
@@ -77,7 +77,7 @@ bufptr++;
 		if (*bufptr == '#' && !(complete & 3) && (bufptr == *buf || *(bufptr - 1) == ' '))
 		{
 			*bufptr = 0;
-	break;	
+			break;
 		}
 		complete &= ~4;
 #ifdef DEBUGVALID
