@@ -2,6 +2,7 @@
 /**
  * _code - changes directory buildin
  * @av: arg to work with
+ * _cd: integer of the cd
  * Return: integer
  */
 
