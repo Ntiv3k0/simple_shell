@@ -166,23 +166,25 @@ int aliascmd(char *av[])
 			{
 				free(n);
 				return (-1);
-			}
-			setalias(n, val);
+}			setalias(n, val);
 		}
 		else
-		{
+
 #ifdef DEBUGMODE
-			printf("Printing alias: %s\n", n);
+	printf("Printing alias: %s\n", n);
 #endif
+	val = _strdup(n);
+	val = getalias(val);
+#ifdef DEBUGMODE
+	printf("Val: %s\n", val);
+#endif
+		{
 			val = _strdup(n);
 			val = getalias(val);
-#ifdef DEBUGMODE
-			printf("Val: %s\n", val);
-#endif
 			if (!_strcmp(val, n))
 			{
 				fprintstrs(1, "alias: ", n, "not sound\n", NULL);
-				free(val);
+			       	free(val);
 			}
 			else
 			{
